@@ -1,31 +1,6 @@
+var TicTacJoe = TicTacJoe || {};
 
-var Game = function(){
-  this.gameBoard = {
-  'top-left': null,
-  'top-middle': null,
-  'top-right': null,
-  'center-left': null,
-  'center': null,
-  'center-right': null,
-  'bottom-left': null,
-  'bottom-middle': null,
-  'bottom-right': null
-  };
-  k
+
+TicTacJoe.Game = function  (PlayerOneName,PlayerTwoName) {
 
 }
-
-
-
-//testing
-
-gameOne = new Game();
-console.log(gameOne);
-
-
-
-
-// $(document).ready(function() {
-
-
-// });

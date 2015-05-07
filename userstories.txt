@@ -1,0 +1,38 @@
+userstories.txt
+
+
+1. User will open page and see game board.
+
+2. User will click on a box
+
+3. Box will change color to obtain ownership
+
+4. Player's Turn will then end.
+
+5. New Player will see board with color difference.
+
+
+
+1. Player opens page
+  a. Player sees board
+  b. Player sees 9 squares
+  c. Player can click "Begin Game"
+
+2. Turn 1
+  a. Player can hover over any square
+    i. Color will change on hover
+  b. Player clicks on square
+    i. Color will change permanently on click
+    ii. Rules run to determine if victorious (if true: go to Game Over)
+    iii. Player turn ends
+3. Turn n
+  a. Player sees marked squares
+  b. Player clicks on square
+    i. Color changes
+    ii. Rules run to determine if victorious (if true: go to Game Over)
+
+4. Game Over:
+  a.
+
+
+
