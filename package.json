@@ -1,0 +1,25 @@
+{
+  "name": "project01",
+  "version": "1.0.0",
+  "description": "A simple tic tac toe game",
+  "main": "app.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astoellis/tic_tac_joe.git"
+  },
+  "author": "Andrew Ellis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astoellis/tic_tac_joe/issues"
+  },
+  "homepage": "https://github.com/astoellis/tic_tac_joe#readme"
+}
