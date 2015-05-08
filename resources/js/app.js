@@ -13,6 +13,7 @@ $('#start').click(function () {
   game = TicTacJoe.Game;
   game.init(domEl);
   $(this).toggleClass('hidden');
+  $('#spacer').show();
 });
 
 $('.square').click(function() {

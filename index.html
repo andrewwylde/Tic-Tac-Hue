@@ -9,14 +9,29 @@
   <title>Tic Tac Joe!</title>
 </head>
 <body>
-  <div id="wrapper">
-    <div id="content">
-    <div id="player">Turn: Player 1</div>
-    <button type="button" id="start" class="">Start</button>
-      <div id="gameboard">
-      </div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div id="player">Turn: Player 1</div>
+        <div id="spacer" class="center-block"></div>
+        <button type="button" id="start" class="center-block">Start</button>
     </div>
   </div>
+
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div id="gameboard" class='center-block'></div>
+    </div>
+
+  </div>
+
+    </div>
+</div>
+
+
+</div>
   <div class="container-fluid">
     <footer>
       <ul id="footie">
@@ -26,6 +41,7 @@
       </ul>
     </footer>
 </div>
+
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
