@@ -1,0 +1,2 @@
+var TicTacJoe = TicTacJoe || {};
+
