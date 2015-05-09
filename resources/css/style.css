@@ -5,13 +5,17 @@
 
 #spacer {
   display: none;
-  width: 100px;
+  width: 150px;
   height: 50px;
+  margin: 10px auto;
 }
 
 #start {
-  width: 100px;
+  width: 150px;
   height: 50px;
+  text-align: center;
+  font-size: 14pt;
+  margin: 10px auto;
 }
 
 .center-block {
@@ -21,6 +25,7 @@
 #player {
   color: black;
   font-size: 2em;
+  text-align: center;
 }
 
 #gameboard {
@@ -69,8 +74,8 @@ footer ul li :hover {
 a {
   color: rgba(236, 240, 241,1.0);
   text-decoration: none;
-}*/
-
+}
+*/
 .x {
   background-color: rgba(22, 160, 133,1.0)
 }

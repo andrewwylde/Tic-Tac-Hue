@@ -2,23 +2,27 @@ var TicTacJoe = TicTacJoe || {};
 
 $(document).ready(function() {
 
-turnNumber = 8;
-playerNum = 1;
+var turnNumber = 1;
+var playerNum = 1;
+var domEl = $('#gameboard');
+var game;
 
-domEl = $('#gameboard');
-game = TicTacJoe.Game;
-game.init(domEl);
 
 $('#start').click(function () {
   game = TicTacJoe.Game;
   game.init(domEl);
   $(this).toggleClass('hidden');
+  $(this).html('Play Again?')
+  // debugger;
   $('#spacer').show();
-});
+})
 
-$('.square').click(function() {
 
-if(turnNumber < 9){
+
+$('#gameboard').on('click', '.square',function() {
+  console.log('this totally ahpnendad');
+
+  if(turnNumber < 9){
 
   var xcoord = $(this).data('x');
   var ycoord = $(this).data('y');
@@ -29,6 +33,7 @@ if(turnNumber < 9){
 } else {
 alert('Game Over');
 $('button:hidden').toggleClass('hidden');
+$('#spacer').hide();
 }
 
 /*This is the area where I test for win conditions*/
