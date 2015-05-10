@@ -28,8 +28,45 @@ TicTacJoe.Game = (function() {
     _renderBoard();
   }
 
-  function _testWin (){
-    console.log('Tested Winner');
+  function _setBoard (xcoord, ycoord, player) {
+    _gameBoard[ycoord][xcoord] = player;
+  }
+
+  function _testWin (playerNum){
+    if (_check_columns(playerNum) || _check_diags(playerNum) || _checkrows(playerNum)) {
+      return playerNum;
+    } else {
+      return 'Cats Game';
+    }
+  }
+
+  function _check_diags () {
+    if (_gameBoard[0][0] ===   0 && _gameBoard[1][1] === 0 && _gameBoard[2][2]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function _checkrow (argument) {
+    // body...
+  }
+
+// [0,0, 0,1, 0,2]
+// [1,0, 1,1, 1,2]
+// [2,0, 2,1, 2,2]
+
+  function _check_columns (playerNum) {
+    for (var i = 0; i<=2; i++){
+      if(
+        _gameBoard[0][i] === playerNum
+        && _gameBoard[1][i] === playerNum
+        && _gameBoard[2][i] === playerNum
+        ){
+        return true;
+      }
+    }
+
   }
 
 
@@ -37,7 +74,8 @@ TicTacJoe.Game = (function() {
     init: _init,
     renderBoard: _renderBoard,
     gameBoard: _gameBoard,
-    testWinner: _testWin
+    testWinner: _testWin,
+    setBoard: _setBoard
   };
 }) ();
 

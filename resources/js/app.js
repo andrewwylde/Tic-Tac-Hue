@@ -2,38 +2,65 @@ var TicTacJoe = TicTacJoe || {};
 
 $(document).ready(function() {
 
-var turnNumber = 1;
-var playerNum = 1;
-var domEl = $('#gameboard');
-var game;
+  var turnNumber = 1;
+  var playerNum = 1;
+  var domEl = $('#gameboard');
+  var game = TicTacJoe.Game;
 
-
-$('#start').click(function () {
-  game = TicTacJoe.Game;
   game.init(domEl);
-  $(this).toggleClass('hidden');
-  $(this).html('Play Again?')
-  // debugger;
-  $('#spacer').show();
-})
+
+
+  $('#start').click(function () {
+    game = TicTacJoe.Game;
+    game.init(domEl);
+    $(this).toggleClass('hidden');
+    $(this).html('Play Again?')
+    // debugger;
+    $('#spacer').show();
+  })
 
 
 
 $('#gameboard').on('click', '.square',function() {
-  console.log('this totally ahpnendad');
-
   if(turnNumber < 9){
+    var xcoord = $(this).data('x');
+    // console.log('XcoorD: ' + xcoord);
+    var ycoord = $(this).data('y');
+    // console.log('YcoorD: ' + ycoord);
+    game.setBoard(ycoord,xcoord,playerNum);
+
+    turnNumber ++;
+
+
+//Test if turn# is even, if not, switch
+    if (turnNumber%2 === 0){
+      playerNum = 2
+    } else {
+      playerNum = 1
+    }
+
+} else if (turnNumber >= 5) {
 
   var xcoord = $(this).data('x');
+  // console.log('XcoorD: ' + xcoord);
   var ycoord = $(this).data('y');
-  var square = game.gameBoard[xcoord][ycoord];
+  // console.log('YcoorD: ' + ycoord);
+  game.setBoard(ycoord,xcoord,playerNum);
+  game.testWinner(playerNum);
 
-  turnNumber ++;
+} else if (turnNumber === 9) {
 
-} else {
-alert('Game Over');
-$('button:hidden').toggleClass('hidden');
-$('#spacer').hide();
+  var xcoord = $(this).data('x');
+  // console.log('XcoorD: ' + xcoord);
+  var ycoord = $(this).data('y');
+  // console.log('YcoorD: ' + ycoord);
+  game.setBoard(ycoord,xcoord,playerNum);
+  game.testWinner(playerNum);
+
+  console.log(game.gameBoard);
+  alert('Game Over');
+  $('button:hidden').toggleClass('hidden');
+  $('#spacer').hide();
 }
 
 /*This is the area where I test for win conditions*/
