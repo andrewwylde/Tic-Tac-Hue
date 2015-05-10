@@ -32,13 +32,9 @@ TicTacJoe.Game = (function() {
     _gameBoard[ycoord][xcoord] = player;
   }
 
-  function _testWin (playerNum){
-    if (_check_columns(playerNum) || _check_diags(playerNum) || _checkrows(playerNum)) {
-      return playerNum;
-    } else {
-      return 'Cats Game';
-    }
-  }
+// [0,0, 0,1, 0,2]
+// [1,0, 1,1, 1,2]
+// [2,0, 2,1, 2,2]
 
   function _check_diags () {
     if (_gameBoard[0][0] ===   0 && _gameBoard[1][1] === 0 && _gameBoard[2][2]) {
@@ -48,13 +44,14 @@ TicTacJoe.Game = (function() {
     }
   }
 
-  function _checkrow (argument) {
-    // body...
+  function _check_rows (playerNum) {
+    for (var i = 0; i < _gameBoard.length; i++) {
+      if(_gameBoard[i][0] === _gameBoard[i][1] ===_gameBoard[i][2]) {
+        return true;
+      }
+    }
   }
 
-// [0,0, 0,1, 0,2]
-// [1,0, 1,1, 1,2]
-// [2,0, 2,1, 2,2]
 
   function _check_columns (playerNum) {
     for (var i = 0; i<=2; i++){
@@ -68,6 +65,10 @@ TicTacJoe.Game = (function() {
     }
 
   }
+
+  function _testWin (playerNum){
+    return _check_columns(playerNum) || _check_diags(playerNum) || _check_rows(playerNum)
+}
 
 
   return {
