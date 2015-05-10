@@ -19,7 +19,7 @@ TicTacJoe.Game = (function() {
         xcounter = 0;
         ycounter++;
       }
-      };
+    }
 
   }
 
@@ -28,16 +28,17 @@ TicTacJoe.Game = (function() {
     _renderBoard();
   }
 
-  function _setBoard (xcoord, ycoord, player) {
+  function _setBoard (ycoord, xcoord, player) {
     _gameBoard[ycoord][xcoord] = player;
+
   }
 
 // [0,0, 0,1, 0,2]
 // [1,0, 1,1, 1,2]
 // [2,0, 2,1, 2,2]
 
-  function _check_diags () {
-    if (_gameBoard[0][0] ===   0 && _gameBoard[1][1] === 0 && _gameBoard[2][2]) {
+  function _check_diags (playerNum) {
+    if (_gameBoard[0][0] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][2]===playerNum) {
       return true;
     } else {
       return false;
@@ -45,30 +46,41 @@ TicTacJoe.Game = (function() {
   }
 
   function _check_rows (playerNum) {
-    for (var i = 0; i < _gameBoard.length; i++) {
-      if(_gameBoard[i][0] === _gameBoard[i][1] ===_gameBoard[i][2]) {
-        return true;
-      }
+
+    if(_gameBoard[0][0] === playerNum && _gameBoard[0][1] ===playerNum && _gameBoard[0][2]===playerNum) {
+      return true;
+    } else if (_gameBoard[1][0] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[1][2]===playerNum) {
+      return true;
+    } else if (_gameBoard[2][0] === playerNum && _gameBoard[2][1] ===playerNum && _gameBoard[2][2]===playerNum) {
+      return true;
+    } else {
+      return false;
     }
   }
 
 
   function _check_columns (playerNum) {
-    for (var i = 0; i<=2; i++){
-      if(
-        _gameBoard[0][i] === playerNum
-        && _gameBoard[1][i] === playerNum
-        && _gameBoard[2][i] === playerNum
-        ){
-        return true;
-      }
+    if(_gameBoard[0][0] === playerNum && _gameBoard[1][0] ===playerNum && _gameBoard[2][0]===playerNum) {
+      return true;
+    } else if (_gameBoard[0][1] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[2][1]===playerNum) {
+      return true;
+    } else if (_gameBoard[0][2] === playerNum && _gameBoard[1][2] ===playerNum && _gameBoard[2][2]===playerNum) {
+      return true;
+    } else {
+      return false;
     }
-
   }
 
   function _testWin (playerNum){
-    return _check_columns(playerNum) || _check_diags(playerNum) || _check_rows(playerNum)
+    if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)){
+      _victory(playerNum);
+    }
+
 }
+
+  function _victory (player) {
+    alert('PLAYER ' + player + ' HAS WON THE GAME');
+  }
 
 
   return {

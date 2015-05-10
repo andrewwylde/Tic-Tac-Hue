@@ -78,6 +78,12 @@ a {
   text-decoration: none;
 }
 */
+.marker {
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
+
+}
 .x {
   background-color: rgba(22, 160, 133,1.0)
 }
