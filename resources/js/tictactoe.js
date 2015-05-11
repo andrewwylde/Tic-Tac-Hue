@@ -40,7 +40,12 @@ TicTacJoe.Game = (function() {
   function _check_diags (playerNum) {
     if (_gameBoard[0][0] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][2]===playerNum) {
       return true;
-    } else {
+    } else if (_gameBoard[0][2] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][0]===playerNum) {
+      return true;
+    }
+
+
+    else {
       return false;
     }
   }
@@ -74,6 +79,7 @@ TicTacJoe.Game = (function() {
   function _testWin (playerNum){
     if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)){
       _victory(playerNum);
+
     }
 
 }

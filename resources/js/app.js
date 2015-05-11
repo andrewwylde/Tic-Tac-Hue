@@ -28,6 +28,9 @@ $(document).ready(function() {
 
 
 $('#gameboard').on('click', '.square',function() {
+
+
+
   if(turnNumber < 5){
     xcoord = $(this).data('x');
     ycoord = $(this).data('y');
