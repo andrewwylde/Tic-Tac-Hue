@@ -1,5 +1,6 @@
 var TicTacJoe = TicTacJoe || {};
 
+var usersRef = new Firebase ('https://astoellistictactoe.firebaseio.com/users/');
 
 TicTacJoe.Game = (function() {
   var _gameBoard = [[0,0,0],[0,0,0],[0,0,0]], $logDomElement, $boardDomElement, turnNumber;
