@@ -37,65 +37,63 @@ TicTacJoe.Game = (function() {
 // [1,0, 1,1, 1,2]
 // [2,0, 2,1, 2,2]
 
-  function _check_diags (playerNum) {
-    if (_gameBoard[0][0] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][2]===playerNum) {
-      return true;
-    } else if (_gameBoard[0][2] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][0]===playerNum) {
-      return true;
-    }
-
-
-    else {
-      return false;
-    }
+function _check_diags (playerNum) {
+  if (_gameBoard[0][0] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][2]===playerNum) {
+    return true;
+  } else if (_gameBoard[0][2] ===playerNum && _gameBoard[1][1] === playerNum && _gameBoard[2][0]===playerNum) {
+    return true;
   }
-
-  function _check_rows (playerNum) {
-
-    if(_gameBoard[0][0] === playerNum && _gameBoard[0][1] ===playerNum && _gameBoard[0][2]===playerNum) {
-      return true;
-    } else if (_gameBoard[1][0] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[1][2]===playerNum) {
-      return true;
-    } else if (_gameBoard[2][0] === playerNum && _gameBoard[2][1] ===playerNum && _gameBoard[2][2]===playerNum) {
-      return true;
-    } else {
-      return false;
-    }
+  else {
+    return false;
   }
+}
 
+function _check_rows (playerNum) {
 
-  function _check_columns (playerNum) {
-    if(_gameBoard[0][0] === playerNum && _gameBoard[1][0] ===playerNum && _gameBoard[2][0]===playerNum) {
-      return true;
-    } else if (_gameBoard[0][1] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[2][1]===playerNum) {
-      return true;
-    } else if (_gameBoard[0][2] === playerNum && _gameBoard[1][2] ===playerNum && _gameBoard[2][2]===playerNum) {
-      return true;
-    } else {
-      return false;
-    }
+  if(_gameBoard[0][0] === playerNum && _gameBoard[0][1] ===playerNum && _gameBoard[0][2]===playerNum) {
+    return true;
+  } else if (_gameBoard[1][0] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[1][2]===playerNum) {
+    return true;
+  } else if (_gameBoard[2][0] === playerNum && _gameBoard[2][1] ===playerNum && _gameBoard[2][2]===playerNum) {
+    return true;
+  } else {
+    return false;
   }
+}
 
-  function _testWin (playerNum){
-    if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)){
-      _victory(playerNum);
 
-    }
+function _check_columns (playerNum) {
+  if(_gameBoard[0][0] === playerNum && _gameBoard[1][0] ===playerNum && _gameBoard[2][0]===playerNum) {
+    return true;
+  } else if (_gameBoard[0][1] === playerNum && _gameBoard[1][1] ===playerNum && _gameBoard[2][1]===playerNum) {
+    return true;
+  } else if (_gameBoard[0][2] === playerNum && _gameBoard[1][2] ===playerNum && _gameBoard[2][2]===playerNum) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function _testWin (playerNum){
+  if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)){
+    _victory(playerNum);
+
+  }
 
 }
 
-  function _victory (player) {
-    alert('PLAYER ' + player + ' HAS WON THE GAME');
-  }
+function _victory (player) {
+  alert('PLAYER ' + player + ' HAS WON THE GAME');
+}
 
 
-  return {
-    init: _init,
-    renderBoard: _renderBoard,
-    gameBoard: _gameBoard,
-    testWinner: _testWin,
-    setBoard: _setBoard
-  };
+return {
+  init: _init,
+  renderBoard: _renderBoard,
+  gameBoard: _gameBoard,
+  testWinner: _testWin,
+  setBoard: _setBoard
+};
 }) ();
 
 

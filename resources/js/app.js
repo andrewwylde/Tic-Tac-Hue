@@ -50,8 +50,7 @@ $('#gameboard').on('click', '.square',function() {
 
   } else {
 
-    xcoord = $(this).data('x');
-    ycoord = $(this).data('y');
+    xcoord, ycoord = $(this).data('x'), $(this).data('y');
 
     $(this).addClass(playerNum);
 

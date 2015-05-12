@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!--Add firebase -->
-<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-<!--Set viewport -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--Add local stylesheet -->
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
-<!--Add bootstrap -->
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-
+  <!--Add firebase -->
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <!--Set viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--Add local stylesheet -->
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+  <!--Add bootstrap -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <title>Tic Tac Joe!</title>
 </head>
-
 <body>
-<div class="container">
-
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
         <div id="spacer" class="center-block">Turn Number: </div>
-        <button class="btn btn-primary center-block" type="button" id="start">Start</button>
+        <button class="btn btn-prima  ry center-block" type="button" id="start">Start</button>
         <div class="alert alert-success" role="alert"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div id="gameboard" class='center-block'></div>
+      </div>
     </div>
   </div>
-
-  <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div id="gameboard" class='center-block'></div>
-    </div>
-
-  </div>
-
-    </div>
+</div>
 </div>
 
-
+<div class="footer">
+  <ul>
+    <li><a href="http://astoelis.me" title="Blog">Andrew Ellis</a></li>
+    <li><a href="mailto:astoellis@gmail.com?subject=tictacjoe" title="Email">Email Me?</a></li>
+    <li> <a href="https://github.com/astoellis" title="gitHub">Other Stuff I've Made</a></li>
+  </ul>
 </div>
- <!--  <div class="container-fluid">
-    <footer>
-      <ul id="footie">
-        <li><a href="http://astoelis.me" title="Blog">Andrew Ellis</a></li>
-        <li><a href="mailto:astoellis@gmail.com?subject=tictacjoe" title="Email">Email Me?</a></li>
-        <li> <a href="https://github.com/astoellis" title="gitHub">Other Stuff I've Made</a></li>
-      </ul>
-    </footer>
-</div> -->
 
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
 
-<script src="resources/js/tictactoe.js" type="text/javascript" charset="utf-8"></script>
-<script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/tictactoe.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
