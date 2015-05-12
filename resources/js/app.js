@@ -17,6 +17,9 @@ function getAlertDiv (playerNum) {
 }
 
 
+
+
+
 $(document).ready(function() {
 
   var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), game = TicTacJoe.Game, xcoord, ycoord;
@@ -42,14 +45,17 @@ $(document).ready(function() {
       xcoord = $(this).data('x');
       ycoord = $(this).data('y');
 
-      alertDiv = getAlertDiv(playerNum);
-      $('#log').prepend(alertDiv + "Move: " + turnNumber + ": " + "Player Number " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>---");
+      var alertDiv = getAlertDiv(playerNum);
+      var fullAlertDiv = alertDiv + "Move: " + turnNumber + ": " + "Player Number " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
+      $('#log').prepend(fullAlertDiv);
+      $('.alert').fadeIn('fast');
 
 
 
     if (turnNumber < 9) {
       game.setBoard(ycoord,xcoord,playerNum);
       game.testWinner(playerNum);
+
     } else {
 
       $(this).addClass(playerNum);
@@ -66,16 +72,6 @@ $(document).ready(function() {
 
     turnNumber++;
     addOwner($(this),playerNum);
-
-
-    // if (playerNum === 1) {
-    //   $(this).addClass('x');
-    //
-    // } else {
-    //   $(this).addClass('o');
-    //   $(this).html('<img src="resources/images/playO.png" alt="" class="marker">');
-    // }
-
 
   //Test if turn# is even, if not, switch
   if (turnNumber%2 === 0){

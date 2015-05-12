@@ -1,5 +1,15 @@
-
+body {
+  background-color: black !important;
+  color: white !important ;
+  backgrou
+}
 .hidden {
+  display: none;
+}
+
+
+
+.alert {
   display: none;
 }
 
@@ -21,7 +31,13 @@
 }
 
 .center-block {
+  text-align: center;
   margin: 0 auto;
+}
+
+#title-main {
+  font-family: 'Oswald', sans-serif;
+  font-size: 72pt;
 }
 
 #player {
@@ -58,42 +74,6 @@
   list-style-type: none;
 }
 
-/*
-
-
-footer ul {
-  height: 50px;
-  width: 600px;
-  margin: 0px auto;
-  padding: 10px 33%;
-  font-family: helvetica;
-  font-size: 20pt;
-  float: none;
-}
-
-footer ul li {
-  display: inline;
-  float: none;
-  list-style-type: none;
-  padding: 0px 10px;
-  color: rgba(236, 240, 241,1.0);
-}
-
-footer ul li :hover {
-  background-color: rgba(192, 57, 43,.75 );
-}
-
-a {
-  color: rgba(236, 240, 241,1.0);
-  text-decoration: none;
-}
-*/
-.marker {
-  width: 200px;
-  height: 200px;
-  margin: 10px auto;
-
-}
 .x {
   background-color: rgba(22, 160, 133,1.0)
 }
