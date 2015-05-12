@@ -84,7 +84,7 @@ function _testWin (playerNum){
 }
 
 function _victory (player) {
-  alert('PLAYER ' + player + ' HAS WON THE GAME');
+  alert('PLAYER ' + player.toString() + ' HAS WON THE GAME');
 }
 
 

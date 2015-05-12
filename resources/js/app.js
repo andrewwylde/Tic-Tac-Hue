@@ -1,14 +1,25 @@
 var TicTacJoe = TicTacJoe || {};
 
+function addOwner (domEl,playerNum) {
+  if (playerNum === 1){
+    $(domEl).addClass('x');
+  } else {
+    $(domEl).addClass('o');
+  }
+}
+
+function getAlertDiv (playerNum) {
+  if (playerNum === 1) {
+    return '<div class="alert alert-success">';
+  } else {
+    return '<div class="alert alert-danger">';
+  }
+}
+
+
 $(document).ready(function() {
 
-  var turnNumber = 1,
-  playerNum = 1,
-  domEl = $('#gameboard'),
-  game = TicTacJoe.Game,
-  xcoord,
-  ycoord,
-  gameWon = false;
+  var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), game = TicTacJoe.Game, xcoord, ycoord;
 
   game.init(domEl);
 
@@ -20,7 +31,7 @@ $(document).ready(function() {
     game.init(domEl);
     $(this).toggleClass('hidden');
     $(this).html('Play Again?');
-    // debugger;
+
     $('#spacer').html('Player Turn: ' + turnNumber + '<br>Player Number: ' + playerNum);
     $('#spacer').show();
   });
@@ -31,8 +42,9 @@ $(document).ready(function() {
       xcoord = $(this).data('x');
       ycoord = $(this).data('y');
 
-      $('#log').prepend("Move: " + turnNumber + ": You selected square at position [" + xcoord + "," + ycoord + "]" + "<br>");
-      console.log(game.gameBoard[ycoord][xcoord]);
+      alertDiv = getAlertDiv(playerNum);
+      $('#log').prepend(alertDiv + "Move: " + turnNumber + ": " + "Player Number " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>---");
+
 
 
     if (turnNumber < 9) {
@@ -43,26 +55,26 @@ $(document).ready(function() {
       $(this).addClass(playerNum);
 
       game.setBoard(ycoord,xcoord,playerNum);
+
       if (!game.testWinner(playerNum)) {
-        alert ('No Winner!');
+        alert('No Winner!');
       }
       $('button:hidden').toggleClass('hidden');
       $('#spacer').hide();
 
     }
 
-    $('.alert-success').html('You placed a square at a place: [' + xcoord  + ',' + ycoord +']' + '<br>[' + game.gameBoard[0] + ']' + '<br>[' + game.gameBoard[1] + ']' + '<br>[' + game.gameBoard[2] + ']');
-    $('.alert-success').alert();
-
     turnNumber++;
+    addOwner($(this),playerNum);
 
-    if (playerNum === 1) {
-      $(this).addClass('x');
-      $(this).html('<img src="resources/images/playX.png" alt="" class="marker" > ');
-    } else {
-      $(this).addClass('o');
-      $(this).html('<img src="resources/images/playO.png" alt="" class="marker">');
-    }
+
+    // if (playerNum === 1) {
+    //   $(this).addClass('x');
+    //
+    // } else {
+    //   $(this).addClass('o');
+    //   $(this).html('<img src="resources/images/playO.png" alt="" class="marker">');
+    // }
 
 
   //Test if turn# is even, if not, switch
