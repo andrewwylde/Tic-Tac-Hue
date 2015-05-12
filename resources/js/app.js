@@ -2,13 +2,13 @@ var TicTacJoe = TicTacJoe || {};
 
 $(document).ready(function() {
 
-  var turnNumber = 1;
-  var playerNum = 1;
-  var domEl = $('#gameboard');
-  var game = TicTacJoe.Game;
-  var xcoord;
-  var ycoord;
-  var gameWon = false;
+  var turnNumber = 1,
+  playerNum = 1,
+  domEl = $('#gameboard'),
+  game = TicTacJoe.Game,
+  xcoord,
+  ycoord,
+  gameWon = false;
 
   game.init(domEl);
 
@@ -28,40 +28,28 @@ $(document).ready(function() {
 
 
   $('#gameboard').on('click', '.square',function() {
-
-
-
-    if(turnNumber < 5){
       xcoord = $(this).data('x');
       ycoord = $(this).data('y');
 
-      $(this).addClass(playerNum);
-
-      game.setBoard(ycoord,xcoord,playerNum);
-
+      $('#log').prepend("Move: " + turnNumber + ": You selected square at position [" + xcoord + "," + ycoord + "]" + "<br>");
+      console.log(game.gameBoard[ycoord][xcoord]);
 
 
-    } else if (turnNumber < 9) {
-      xcoord = $(this).data('x');
-      ycoord = $(this).data('y');
-
+    if (turnNumber < 9) {
       game.setBoard(ycoord,xcoord,playerNum);
       game.testWinner(playerNum);
-
     } else {
-
-      xcoord, ycoord = $(this).data('x'), $(this).data('y');
 
       $(this).addClass(playerNum);
 
       game.setBoard(ycoord,xcoord,playerNum);
-
-      alert('Game Over');
+      if (!game.testWinner(playerNum)) {
+        alert ('No Winner!');
+      }
       $('button:hidden').toggleClass('hidden');
       $('#spacer').hide();
+
     }
-
-
 
     $('.alert-success').html('You placed a square at a place: [' + xcoord  + ',' + ycoord +']' + '<br>[' + game.gameBoard[0] + ']' + '<br>[' + game.gameBoard[1] + ']' + '<br>[' + game.gameBoard[2] + ']');
     $('.alert-success').alert();

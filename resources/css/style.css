@@ -31,8 +31,18 @@
 }
 
 #gameboard {
-  width:600px;
-  height:600px;
+  width:100%;
+  height:100%;
+  padding: 0;
+}
+
+
+.square {
+  height: 184.97917175293px;
+  background-color: rgba(142, 68, 173,1.0);
+}
+.square:hover {
+  background-color: rgba(155, 89, 182,1.0);
 }
 
 .footer {
@@ -48,15 +58,6 @@
   list-style-type: none;
 }
 
-.square {
-  width: 200px;
-  height: 200px;
-  float: left;
-  background-color: rgba(142, 68, 173,1.0);
-}
-.square:hover {
-  background-color: rgba(155, 89, 182,1.0);
-}
 /*
 
 

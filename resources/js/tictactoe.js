@@ -13,9 +13,10 @@ TicTacJoe.Game = (function() {
     $boardDomElement.html('');
 
     for (var i = 0; i < 9; i++) {
-      $boardDomElement.append('<div class="square" data-x = "' + xcounter + '" data-y = "' + ycounter + '"></div>');
+      $boardDomElement.append('<div class="square col-xs-4" data-x = "' + xcounter + '" data-y = "' + ycounter + '"></div>');
       xcounter++;
       if (xcounter === 3) {
+        $boardDomElement.append('</div>');
         xcounter = 0;
         ycounter++;
       }

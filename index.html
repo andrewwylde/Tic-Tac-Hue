@@ -11,31 +11,37 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <title>Tic Tac Joe!</title>
 </head>
+
+
 <body>
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div id="spacer" class="center-block">Turn Number: </div>
-        <button class="btn btn-prima  ry center-block" type="button" id="start">Start</button>
-        <div class="alert alert-success" role="alert"></div>
+        <button class="btn btn-primary center-block" type="button" id="start">Start</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div id="gameboard" class='center-block'></div>
+      <div class="col-md-3">
+        <div class="alert alert-success" role="alert"></div>
       </div>
+      <div class="col-md-6">
+        <div id="gameboard" class="row"></div>
+      </div>
+        <div class="col-md-3" style="border: 2px solid black;" id="log">
+        </div>
     </div>
   </div>
 </div>
 </div>
-
+<!--
 <div class="footer">
   <ul>
     <li><a href="http://astoelis.me" title="Blog">Andrew Ellis</a></li>
     <li><a href="mailto:astoellis@gmail.com?subject=tictacjoe" title="Email">Email Me?</a></li>
     <li> <a href="https://github.com/astoellis" title="gitHub">Other Stuff I've Made</a></li>
   </ul>
-</div>
+</div> -->
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
