@@ -30,8 +30,15 @@ TicTacJoe.Game = (function() {
   }
 
   function _setBoard (ycoord, xcoord, player) {
-    _gameBoard[ycoord][xcoord] = player;
+      _gameBoard[ycoord][xcoord] = player;
+  }
 
+  function _checkBoard (ycoord, xcoord) {
+    if (_gameBoard[ycoord][xcoord] === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 // [0,0, 0,1, 0,2]
@@ -93,7 +100,8 @@ return {
   renderBoard: _renderBoard,
   gameBoard: _gameBoard,
   testWinner: _testWin,
-  setBoard: _setBoard
+  setBoard: _setBoard,
+  checkBoard: _checkBoard
 };
 }) ();
 
