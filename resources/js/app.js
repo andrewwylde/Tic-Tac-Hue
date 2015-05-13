@@ -1,9 +1,5 @@
 var TicTacJoe = TicTacJoe || {};
 
-var dbRef = new Firebase ('https://tic-tac-hue.firebaseio.com/');
-var usersRef = new Firebase ('https://tic-tac-hue.firebaseio.com/users/');
-var gamesRef = new Firebase ('https://tic-tac-hue.firebaseio.com/games/');
-
 //Function to grant ownership to a square
 function addOwner (domEl,playerNum) {
 
@@ -46,12 +42,14 @@ function makeLogEntry (playerNum, turnNumber, xcoord, ycoord) {
           $('.alert').fadeIn('slow');
 }
 
+
+//Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
+
+var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord, gameWon = false;
+
 //Initiate Doc Readiness
 
 $(document).ready(function() {
-
-//Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
-  var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord, gameWon = false;
 
   $('#start').click(function () {
     turnNumber = 1;
@@ -63,9 +61,6 @@ $(document).ready(function() {
     //Hide this button and change its wording
     $(this).toggleClass('hidden');
     $(this).html('Play Again?');
-    //Put a Spacer in to replace button
-    $('#spacer').html('Turn ' + turnNumber + '<br>Player ' + playerNum);
-    $('#spacer').toggleClass('hidden');
     //Show the score board
     $('#score-board').removeClass('hidden');
   });
@@ -85,12 +80,15 @@ $(document).ready(function() {
 
           //Check if this is the last possible turn
           //  if not, then go ahead and test winner (I know you could wait until the
-          //  5th turn, but I decided it's a low cost operation)
+          //  5th turn, but
           if (turnNumber < 9) {
             game.setBoard(ycoord,xcoord,playerNum);
 
             addOwner($(this),playerNum);
             gameWon = game.testWinner(playerNum);
+            if (gameWon) {
+            game.addVictory(playerNum);
+          }
             turnNumber++;
 
             if (turnNumber%2 === 0){
@@ -113,7 +111,9 @@ $(document).ready(function() {
 
               //Alert Sadness that there's no winner
               makeLogEntry(0, turnNumber, xcoord, ycoord);
-            }
+            } else {
+            game.addVictory(playerNum);
+          }
 
             //Reset the hidden button to be visible!
             $('button:hidden').toggleClass('hidden');
@@ -121,14 +121,13 @@ $(document).ready(function() {
           }
 
 
+
       } else {
 
         alert('Someone already played there...');
       }
 
-      if (gameWon){
-            game.addVictory(playerNum);
-          }
+
     }
 
 
