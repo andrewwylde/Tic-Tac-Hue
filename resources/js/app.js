@@ -107,14 +107,11 @@ $(document).ready(function() {
 
             // Then check whether that resulted in a victory.
             if (!game.testWinner(playerNum)) {
-              alert('No Winner!');
               gameWon = true;
               $('button:hidden').toggleClass('hidden');
 
               //Alert Sadness that there's no winner
-              var alertContents = getAlertDiv(0,turnNumber,xcoord,ycoord);
-              $('#log').prepend(alertContents);
-              $('.alert').fadeIn('slow');
+              makeLogEntry(0, turnNumber, xcoord, ycoord);
             }
 
             //Reset the hidden button to be visible!
