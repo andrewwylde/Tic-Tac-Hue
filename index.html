@@ -40,7 +40,29 @@
       <div class="col-xs-6">
         <div id="gameboard" class="row"></div>
       </div>
-      <div class="col-xs-3" id="log">
+      <div class="col-xs-3 hidden" id="score-board">
+      <h3 style="text-align: center;">Victory Points</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Player 1: </td>
+            <td id="p1-score">0</td>
+          </tr>
+           <tr>
+            <td>Player 2: </td>
+            <td id="p2-score">0</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h2>Game is Over</h2>
+          <p></p>
+        </div>
       </div>
     </div>
 

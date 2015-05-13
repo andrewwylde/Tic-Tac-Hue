@@ -1,14 +1,26 @@
 body {
   background-color: black !important;
-  color: white !important ;
-  backgrou
+  color: white !important;
 }
+
 .hidden {
   display: none;
 }
 
 .alert {
   display: none;
+}
+
+.row {
+  margin: 0 !important;
+}
+
+#p1-score{
+  padding-left: 10px;
+}
+
+#p2-score{
+  padding-left: 10px;
 }
 
 #spacer {
@@ -50,8 +62,13 @@ body {
   padding: 0;
 }
 
+#score-board {
+  margin-top: -20px;
+  padding-top: -20px;
+}
+
 .square {
-  height: 184.97917175293px;
+  height: 180px;
   background-color: rgba(142, 68, 173,1.0);
 }
 .square:hover {
@@ -88,22 +105,47 @@ body {
   background-color: rgba(231, 76, 60,1.0);
 }
 
+.modal-content {
+  text-align: center;
+  color: black;
+}
+
 
 @media (max-width: 1200px){
   .square {
-    height: 151.65625px;
+    height: 146.65625px;
   }
+
 }
 
 @media (max-width: 992px){
   .square {
-    height: 115px;
+    height: 108.828125px;
   }
+
+  .log-alert {
+    font-size: 10px !important;
+  }
+
+  h1 {
+    font-size: 72px !important;
+  }
+
+  #log {
+    padding: 0 5px !important;
+  }
+
 }
 
 
 @media (max-width: 768px){
   .square {
-    height: 89px;
+    height: 68.65625px;
+  }
+  h1 {
+    font-size: 36px !important;
+  }
+   #log {
+    padding: 0px !important;
   }
 }

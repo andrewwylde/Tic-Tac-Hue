@@ -78,9 +78,14 @@ TicTacJoe.Game = (function() {
     }
   }
 
+  function _addPoint (player) {
+    var playerDiv = ("#p"+player+"-score");
+    var oldScore = parseInt($(playerDiv).html());
+    $(playerDiv).html(oldScore+=1);
+  }
+
   function _testWin (playerNum){
     if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)) {
-      _victory(playerNum);
       return true;
     } else {
       return false;
@@ -89,8 +94,11 @@ TicTacJoe.Game = (function() {
   }
 
   function _victory (player) {
+
+    _addPoint(player);
+    $('.modal-content p').html("Player " + player + " has emerged victorious, gaining them 1 victory point");
+    $('.bs-example-modal-sm').modal('show');
     $('button:hidden').toggleClass('hidden');
-    $('#spacer').toggleClass('hidden');
   }
 
   return {
@@ -100,6 +108,7 @@ TicTacJoe.Game = (function() {
     testWinner: _testWin,
     setBoard: _setBoard,
     checkBoard: _checkBoard,
+    addVictory: _victory
   };
 }) ();
 

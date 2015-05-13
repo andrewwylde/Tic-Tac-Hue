@@ -22,15 +22,15 @@ function getAlertDiv (playerNum, turnNumber, xcoord, ycoord) {
   var prefix;
   if (playerNum === 1) {
     //Green for Player 1
-    prefix = '<div class="alert alert-success">';
+    prefix = '<div class="alert alert-success log-alert">';
     return prefix + ending;
   } else if (playerNum === 2){
     //Red for Player 2
-    prefix = '<div class="alert alert-danger">';
+    prefix = '<div class="alert alert-danger log-alert">';
     return  prefix + ending;
   } else if (playerNum === 0){
     //No win gets a yellow alert
-    return '<div class="alert alert-warning">Neither Player Was Victorious</div>';
+    return '<div class="alert alert-warning log-alert">Neither Player Was Victorious</div>';
   }
 }
 
@@ -66,6 +66,8 @@ $(document).ready(function() {
     //Put a Spacer in to replace button
     $('#spacer').html('Turn ' + turnNumber + '<br>Player ' + playerNum);
     $('#spacer').toggleClass('hidden');
+    //Show the score board
+    $('#score-board').removeClass('hidden');
   });
 
   $('#gameboard').on('click', '.square',function() {
@@ -88,7 +90,6 @@ $(document).ready(function() {
             game.setBoard(ycoord,xcoord,playerNum);
 
             addOwner($(this),playerNum);
-            game.testWinner(playerNum);
             gameWon = game.testWinner(playerNum);
             turnNumber++;
 
@@ -116,19 +117,18 @@ $(document).ready(function() {
 
             //Reset the hidden button to be visible!
             $('button:hidden').toggleClass('hidden');
-            //Hide the Div that was saving the button's space
-            $('#spacer').toggleClass('hidden');
 
           }
-
-        //After turn is over, update the Turn number within the Spacer Div
-        $('#spacer').html('Turn ' + turnNumber + '<br>Player Number: ' + playerNum);
 
 
       } else {
 
         alert('Someone already played there...');
       }
+
+      if (gameWon){
+            game.addVictory(playerNum);
+          }
     }
 
 
