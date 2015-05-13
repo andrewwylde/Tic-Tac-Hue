@@ -41,14 +41,14 @@ $(document).ready(function() {
   var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord;
 
   $('#start').click(function () {
-    player1Name = window.prompt('Player 1 name?"');
-    usersRef.child('playerOne').update({
-      displayName: player1Name
-    });
-    player2Name = window.prompt('Player 2 name?"');
-    usersRef.child('playerTwo').update({
-      displayName: player2Name
-    });
+    // player1Name = window.prompt('Player 1 name?"');
+    // usersRef.child('playerOne').update({
+    //   displayName: player1Name
+    // });
+    // player2Name = window.prompt('Player 2 name?"');
+    // usersRef.child('playerTwo').update({
+    //   displayName: player2Name
+    // });
     turnNumber = 1;
     playerNum = 1;
     game = TicTacJoe.Game;
