@@ -81,7 +81,6 @@ $(document).ready(function() {
           //Make a div that contains all the necessary information for the Log
           makeLogEntry(playerNum, turnNumber, xcoord, ycoord);
 
-
           //Check if this is the last possible turn
           //  if not, then go ahead and test winner (I know you could wait until the
           //  5th turn, but I decided it's a low cost operation)
@@ -93,13 +92,11 @@ $(document).ready(function() {
             gameWon = game.testWinner(playerNum);
             turnNumber++;
 
-
             if (turnNumber%2 === 0){
               playerNum = 2;
             } else {
               playerNum = 1;
             }
-
           }
           else {
 
