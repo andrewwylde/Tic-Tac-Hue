@@ -1,7 +1,8 @@
 var TicTacJoe = TicTacJoe || {};
 
-var dbRef = new Firebase ('https://astoellistictactoe.firebaseio.com/');
-var usersRef = new Firebase ('https://astoellistictactoe.firebaseio.com/users/');
+var dbRef = new Firebase ('https://tic-tac-hue.firebaseio.com/');
+var usersRef = new Firebase ('https://tic-tac-hue.firebaseio.com/users/');
+var gamesRef = new Firebase ('https://tic-tac-hue.firebaseio.com/games/');
 
 //Function to grant ownership to a square
 function addOwner (domEl,playerNum) {
@@ -18,13 +19,14 @@ function addOwner (domEl,playerNum) {
 //Function to create an alert div. Constructs appropriate div with prefix and suffix
 function getAlertDiv (playerNum, turnNumber, xcoord, ycoord) {
   var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
+  var prefix;
   if (playerNum === 1) {
     //Green for Player 1
-    var prefix = '<div class="alert alert-success">';
+    prefix = '<div class="alert alert-success">';
     return prefix + ending;
   } else if (playerNum === 2){
     //Red for Player 2
-    var prefix = '<div class="alert alert-danger">'
+    prefix = '<div class="alert alert-danger">';
     return  prefix + ending;
   } else if (playerNum === 0){
     //No win gets a yellow alert
@@ -32,104 +34,111 @@ function getAlertDiv (playerNum, turnNumber, xcoord, ycoord) {
   }
 }
 
+function gameToDB (game){
+  gamesRef.push(game);
+}
+
+
+function makeLogEntry (playerNum, turnNumber, xcoord, ycoord) {
+  var alertContents = getAlertDiv(playerNum, turnNumber, xcoord, ycoord);
+          $('#log').prepend(alertContents);
+          //Dope animation
+          $('.alert').fadeIn('slow');
+}
 
 //Initiate Doc Readiness
 
 $(document).ready(function() {
 
 //Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
-  var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord;
+  var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord, gameWon = false;
 
   $('#start').click(function () {
-    // player1Name = window.prompt('Player 1 name?"');
-    // usersRef.child('playerOne').update({
-    //   displayName: player1Name
-    // });
-    // player2Name = window.prompt('Player 2 name?"');
-    // usersRef.child('playerTwo').update({
-    //   displayName: player2Name
-    // });
     turnNumber = 1;
     playerNum = 1;
     game = TicTacJoe.Game;
     game.init(domEl, logEl);
+    gameWon = false;
+
+    //Hide this button and change its wording
     $(this).toggleClass('hidden');
     $(this).html('Play Again?');
-
+    //Put a Spacer in to replace button
     $('#spacer').html('Turn ' + turnNumber + '<br>Player ' + playerNum);
     $('#spacer').toggleClass('hidden');
   });
 
-
-
   $('#gameboard').on('click', '.square',function() {
-    //Set X and Y Coordinates for the square that was clicked
-    xcoord = $(this).data('x'), ycoord = $(this).data('y');
 
-    //Verify that nothing exists on the game board at this time
-    if (game.checkBoard(ycoord,xcoord)) {
+    if(!gameWon){
+        //Set X and Y Coordinates for the square that was clicked
+        xcoord = $(this).data('x');
+        ycoord = $(this).data('y');
 
-      //Make a div that contains all the necessary information for the Log
-      var alertContents = getAlertDiv(playerNum, turnNumber, xcoord, ycoord);
-      $('#log').prepend(alertContents);
-      //Dope animation
-      $('.alert').fadeIn('slow');
+        //Verify that nothing exists on the game board at this time
+        if (game.checkBoard(ycoord,xcoord)) {
 
-      //Check if this is the last possible turn
-      //  if not, then go ahead and test winner (I know you could wait until the
-      //  5th turn, but I decided it's a low cost operation)
-      if (turnNumber < 9) {
-        game.setBoard(ycoord,xcoord,playerNum);
+          //Make a div that contains all the necessary information for the Log
+          makeLogEntry(playerNum, turnNumber, xcoord, ycoord);
 
-        addOwner($(this),playerNum);
-        game.testWinner(playerNum);
 
+          //Check if this is the last possible turn
+          //  if not, then go ahead and test winner (I know you could wait until the
+          //  5th turn, but I decided it's a low cost operation)
+          if (turnNumber < 9) {
+            game.setBoard(ycoord,xcoord,playerNum);
+
+            addOwner($(this),playerNum);
+            game.testWinner(playerNum);
+            gameWon = game.testWinner(playerNum);
+            turnNumber++;
+
+
+            if (turnNumber%2 === 0){
+              playerNum = 2;
+            } else {
+              playerNum = 1;
+            }
+
+          }
+          else {
+
+            // Otherwise, go ahead and add this piece to the board
+            game.setBoard(ycoord,xcoord,playerNum);
+
+            addOwner($(this),playerNum);
+
+            // Then check whether that resulted in a victory.
+            if (!game.testWinner(playerNum)) {
+              alert('No Winner!');
+              gameWon = true;
+              $('button:hidden').toggleClass('hidden');
+
+              //Alert Sadness that there's no winner
+              var alertContents = getAlertDiv(0,turnNumber,xcoord,ycoord);
+              $('#log').prepend(alertContents);
+              $('.alert').fadeIn('slow');
+            }
+
+            //Reset the hidden button to be visible!
+            $('button:hidden').toggleClass('hidden');
+            //Hide the Div that was saving the button's space
+            $('#spacer').toggleClass('hidden');
+
+          }
+
+        //After turn is over, update the Turn number within the Spacer Div
+        $('#spacer').html('Turn ' + turnNumber + '<br>Player Number: ' + playerNum);
+
+
+      } else {
+
+        alert('Someone already played there...');
       }
-      else {
-
-        // Otherwise, go ahead and add this piece to the board
-        game.setBoard(ycoord,xcoord,playerNum);
-
-        addOwner($(this),playerNum);
-
-        // Then check whether that resulted in a victory.
-        if (!game.testWinner(playerNum)) {
-          alert('No Winner!');
-          $('button:hidden').toggleClass('hidden');
-
-          //Alert Sadness that there's no winner
-          var alertContents = getAlertDiv(0,turnNumber,xcoord,ycoord);
-          $('#log').prepend(alertContents);
-          $('.alert').fadeIn('slow');
-        }
-
-        //Reset the hidden button to be visible!
-        $('button:hidden').toggleClass('hidden');
-        //Hide the Div that was saving the button's space
-        $('#spacer').toggleClass('hidden');
-
-      }
-      //As long as any move was made, go ahead and iterate the turn Number
-      turnNumber++;
-
-      //Why is this here?
-
-
-
-    //Test if turn number is even, if not, switch
-    if (turnNumber%2 === 0){
-      playerNum = 2;
-    } else {
-      playerNum = 1;
     }
-    //After turn is over, update the Turn number within the Spacer Div
-    $('#spacer').html('Turn ' + turnNumber + '<br>Player Number: ' + playerNum);
 
 
-  } else {
 
-    alert('Someone already played there...');
-  }
 
 });
 });

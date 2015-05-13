@@ -12,7 +12,6 @@ TicTacJoe.Game = (function() {
     $boardDomElement.html('');
     $logDomElement.html('');
 
-
     for (var i = 0; i < 9; i++) {
       $boardDomElement.append('<div class="square col-xs-4" data-x = "' + xcounter + '" data-y = "' + ycounter + '"></div>');
       xcounter++;
@@ -22,7 +21,6 @@ TicTacJoe.Game = (function() {
         ycounter++;
       }
     }
-
   }
 
   function _init (boardDomElement, logDomElement) {
@@ -86,7 +84,8 @@ function _check_columns (playerNum) {
 }
 
 function _testWin (playerNum){
-  if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)){
+  if( _check_rows(playerNum) || _check_columns(playerNum) || _check_diags(playerNum)) {
+
     _victory(playerNum);
     return true;
   } else {
@@ -98,7 +97,6 @@ function _testWin (playerNum){
 
 function _victory (player) {
   alert('PLAYER ' + player.toString() + ' HAS WON THE GAME');
-
   $('button:hidden').toggleClass('hidden');
   $('#spacer').toggleClass('hidden');
 }
