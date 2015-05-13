@@ -1,18 +1,6 @@
 var TicTacJoe = TicTacJoe || {};
 
-//Function to grant ownership to a square
-function addOwner (domEl,playerNum) {
-
-  //If it's player one, add x, else give it o
-  if (playerNum === 1){
-    $(domEl).addClass('x');
-  } else {
-    $(domEl).addClass('o');
-  }
-}
-
-
-//Function to create an alert div. Constructs appropriate div with prefix and suffix
+//Funct
 function getAlertDiv (playerNum, turnNumber, xcoord, ycoord) {
   var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
   var prefix;
@@ -37,10 +25,10 @@ function gameToDB (game){
 
 function makeLogEntry (playerNum, turnNumber, xcoord, ycoord) {
   var alertContents = getAlertDiv(playerNum, turnNumber, xcoord, ycoord);
-          $('#log').prepend(alertContents);
+  $('#log').prepend(alertContents);
           //Dope animation
           $('.alert').fadeIn('slow');
-}
+        }
 
 
 //Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
@@ -82,13 +70,13 @@ $(document).ready(function() {
           //  if not, then go ahead and test winner (I know you could wait until the
           //  5th turn, but
           if (turnNumber < 9) {
-            game.setBoard(ycoord,xcoord,playerNum);
-
-            addOwner($(this),playerNum);
+            //SEt the board to this person's stuff
+            game.setBoard(ycoord,xcoord,playerNum, $(this));
             gameWon = game.testWinner(playerNum);
+
             if (gameWon) {
-            game.addVictory(playerNum);
-          }
+              game.addVictory(playerNum);
+            }
             turnNumber++;
 
             if (turnNumber%2 === 0){
@@ -100,7 +88,7 @@ $(document).ready(function() {
           else {
 
             // Otherwise, go ahead and add this piece to the board
-            game.setBoard(ycoord,xcoord,playerNum);
+            game.setBoard(ycoord,xcoord,playerNum, $(this));
 
             addOwner($(this),playerNum);
 
@@ -112,28 +100,26 @@ $(document).ready(function() {
               //Alert Sadness that there's no winner
               makeLogEntry(0, turnNumber, xcoord, ycoord);
             } else {
-            game.addVictory(playerNum);
-          }
+              game.addVictory(playerNum);
+            }
 
             //Reset the hidden button to be visible!
             $('button:hidden').toggleClass('hidden');
 
           }
 
+        } else {
+
+          alert('Someone already played there...');
+        }
 
 
-      } else {
-
-        alert('Someone already played there...');
       }
 
 
-    }
 
 
-
-
-});
+    });
 });
 
 

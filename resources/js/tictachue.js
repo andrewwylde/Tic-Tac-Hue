@@ -29,8 +29,18 @@ TicTacJoe.Game = (function() {
     _renderBoard();
   }
 
-  function _setBoard (ycoord, xcoord, player) {
+  function _setBoard (ycoord, xcoord, player, domEl) {
     _gameBoard[ycoord][xcoord] = player;
+    _addOwner(domEl,playerNum);
+  }
+
+  function _addOwner (domEl,playerNum) {
+    // body...//If it's player one, add x, else give it o
+    if (playerNum === 1){
+      $(domEl).addClass('x');
+    } else {
+      $(domEl).addClass('o');
+    }
   }
 
   function _checkBoard (ycoord, xcoord) {
