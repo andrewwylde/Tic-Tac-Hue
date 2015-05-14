@@ -103,9 +103,7 @@ $(document).ready(function() {
 
           //SEt the board to this person's stuff
           game.setBoard(ycoord,xcoord,player, $(this));
-          gameWon = game.testWinner(player);
-
-          if (gameWon) {
+          if (game.testWinner(player)) {
             game.addVictory(player);
           }
 
