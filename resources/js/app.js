@@ -1,21 +1,49 @@
+//CAll set twice
+// 1. When a player makes a move
+// 2. When the game is reset
+
+//Keep the state consistent
+
+//When you reset, just set it to something
+
+//Depending on how data is stored,
+//board state is the game.gameBoard
+
+
+var disabled = false;
+
 var TicTacJoe = TicTacJoe || {};
 
-//Funct
-function getAlertDiv (playerNum, turnNumber, xcoord, ycoord) {
-  var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + playerNum + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
+var usersRef = new Firebase ('https://tic-tac-hue.firebaseio.com/users/');
+var dbRef = new Firebase ('https://tic-tac-hue.firebaseio.com/');
+var gameRef = new Firebase ('https://tic-tac-hue.firebaseio.com/game/');
+
+var gameAuth;
+
+
+var  setUser = function(player){
+  usersRef.set({player: otherPlayer(player),
+    waitingPlayer: gameAuth.uid});
+};
+
+
+var otherPlayer = function(player) {
+  return player === 'X' ? 'O' : 'X';
+};
+
+
+function getAlertDiv (player, turnNumber, xcoord, ycoord) {
+  var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + player + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
   var prefix;
-  if (playerNum === 1) {
+
+  if (player === 'X') {
     //Green for Player 1
     prefix = '<div class="alert alert-success log-alert">';
-    return prefix + ending;
-  } else if (playerNum === 2){
+  } else if (player === 'O'){
     //Red for Player 2
     prefix = '<div class="alert alert-danger log-alert">';
-    return  prefix + ending;
-  } else if (playerNum === 0){
-    //No win gets a yellow alert
-    return '<div class="alert alert-warning log-alert">Neither Player Was Victorious</div>';
   }
+  return prefix + ending;
 }
 
 function gameToDB (game){
@@ -23,8 +51,14 @@ function gameToDB (game){
 }
 
 
-function makeLogEntry (playerNum, turnNumber, xcoord, ycoord) {
-  var alertContents = getAlertDiv(playerNum, turnNumber, xcoord, ycoord);
+function makeLogEntry (player, turnNumber, xcoord, ycoord) {
+  var alertContents;
+  if (player) {
+    alertContents = getAlertDiv(player, turnNumber, xcoord, ycoord);
+  } else {
+    alertContents = '<div class="alert alert-warning log-alert">Neither Player Was Victorious</div>';
+  }
+
   $('#log').prepend(alertContents);
           //Dope animation
           $('.alert').fadeIn('slow');
@@ -33,7 +67,7 @@ function makeLogEntry (playerNum, turnNumber, xcoord, ycoord) {
 
 //Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
 
-var turnNumber = 1, playerNum = 1, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord, gameWon = false;
+var turnNumber = 1, player, domEl = $('#gameboard'), logEl = $('#log'), xcoord, ycoord, gameWon = false;
 
 //Initiate Doc Readiness
 
@@ -41,10 +75,11 @@ $(document).ready(function() {
 
   $('#start').click(function () {
     turnNumber = 1;
-    playerNum = 1;
+    player = 'X';
     game = TicTacJoe.Game;
     game.init(domEl, logEl);
     gameWon = false;
+    setUser(player);
 
     //Hide this button and change its wording
     $(this).toggleClass('hidden');
@@ -61,65 +96,48 @@ $(document).ready(function() {
         ycoord = $(this).data('y');
 
         //Verify that nothing exists on the game board at this time
-        if (game.checkBoard(ycoord,xcoord)) {
+        if (game.checkBoard(ycoord,xcoord) && !disabled) {
 
           //Make a div that contains all the necessary information for the Log
-          makeLogEntry(playerNum, turnNumber, xcoord, ycoord);
+          makeLogEntry(player, turnNumber, xcoord, ycoord);
 
           //Check if this is the last possible turn
           //  if not, then go ahead and test winner (I know you could wait until the
           //  5th turn, but
-          if (turnNumber < 9) {
+          if (turnNumber <= 9) {
             //SEt the board to this person's stuff
-            game.setBoard(ycoord,xcoord,playerNum, $(this));
-            gameWon = game.testWinner(playerNum);
+            game.setBoard(ycoord,xcoord,player, $(this));
+            gameWon = game.testWinner(player);
 
             if (gameWon) {
-              game.addVictory(playerNum);
+              game.addVictory(player);
             }
+
             turnNumber++;
+            player = otherPlayer(player);
 
-            if (turnNumber%2 === 0){
-              playerNum = 2;
-            } else {
-              playerNum = 1;
+            if (turnNumber > 9 && !gameWon){
+              game.addVictory();
+              makeLogEntry(false,turnNumber,xcoord,ycoord);
             }
+
           }
-          else {
-
-            // Otherwise, go ahead and add this piece to the board
-            game.setBoard(ycoord,xcoord,playerNum, $(this));
-
-            addOwner($(this),playerNum);
-
-            // Then check whether that resulted in a victory.
-            if (!game.testWinner(playerNum)) {
-              gameWon = true;
-              $('button:hidden').toggleClass('hidden');
-
-              //Alert Sadness that there's no winner
-              makeLogEntry(0, turnNumber, xcoord, ycoord);
-            } else {
-              game.addVictory(playerNum);
-            }
-
             //Reset the hidden button to be visible!
             $('button:hidden').toggleClass('hidden');
 
+
+          } else {
+
+            alert('Someone already played there...');
           }
 
-        } else {
 
-          alert('Someone already played there...');
         }
 
 
-      }
 
 
-
-
-    });
+      });
 });
 
 

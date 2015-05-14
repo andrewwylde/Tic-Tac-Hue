@@ -19,6 +19,7 @@
   <!-- Create overarching container -->
   <!-- nothing crazy in my html -->
   <div class="container">
+
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
         <h1 id="title-main" class="center-block">Tic Tac Hue</h1>
@@ -42,12 +43,12 @@
         <table>
           <tbody>
             <tr>
-              <td>Player 1: </td>
-              <td id="p1-score">0</td>
+              <td>Player X: </td>
+              <td id="pX-score">0</td>
             </tr>
             <tr>
-              <td>Player 2: </td>
-              <td id="p2-score">0</td>
+              <td>Player O: </td>
+              <td id="pO-score">0</td>
             </tr>
           </tbody>
         </table>
@@ -65,12 +66,10 @@
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="resources/js/integrated-firebase.js" type="text/javascript" charset="utf-8"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="resources/js/tictachue.js" type="text/javascript" charset="utf-8"></script>
   <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
-  <!--
-  <script src="resources/js/firebase.js" type="text/javascript" charset="utf-8"></script>
- -->
 </body>
 
 </html>
