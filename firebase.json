@@ -1,11 +1,10 @@
 {
-  "firebase": "astoellistictactoe",
+  "firebase": "tic-tac-hue",
   "public": ".",
   "ignore": [
     "firebase.json",
     "**/.*",
     "**/node_modules/**",
-    "**/bower_components/**",
     "**/coverage/**",
     "**/test/**"
   ]

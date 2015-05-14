@@ -1,0 +1,22 @@
+{
+  "name": "project01",
+  "version": "0.0.0",
+  "homepage": "https://github.com/astoellis/tic_tac_joe",
+  "authors": [
+    "astoellis <astoellis@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
