@@ -101,36 +101,30 @@ $(document).ready(function() {
           //Make a div that contains all the necessary information for the Log
           makeLogEntry(player, turnNumber, xcoord, ycoord);
 
-          //Check if this is the last possible turn
-          //  if not, then go ahead and test winner (I know you could wait until the
-          //  5th turn, but
-          if (turnNumber <= 9) {
-            //SEt the board to this person's stuff
-            game.setBoard(ycoord,xcoord,player, $(this));
-            gameWon = game.testWinner(player);
+          //SEt the board to this person's stuff
+          game.setBoard(ycoord,xcoord,player, $(this));
+          gameWon = game.testWinner(player);
 
-            if (gameWon) {
-              game.addVictory(player);
-            }
-
-            turnNumber++;
-            player = otherPlayer(player);
-
-            if (turnNumber > 9 && !gameWon){
-              game.addVictory();
-              makeLogEntry(false,turnNumber,xcoord,ycoord);
-            }
-
+          if (gameWon) {
+            game.addVictory(player);
           }
-            //Reset the hidden button to be visible!
-            $('button:hidden').toggleClass('hidden');
+
+          turnNumber++;
+          player = otherPlayer(player);
+
+          if (turnNumber > 9 && !gameWon){
+            game.addVictory();
+            makeLogEntry(false,turnNumber,xcoord,ycoord);
+          }
+
+          //Reset the hidden button to be visible!
+          $('button:hidden').toggleClass('hidden');
 
 
           } else {
 
             alert('Someone already played there...');
           }
-
 
         }
 
