@@ -67,6 +67,7 @@ td {
 #messages {
   color: red;
   list-style-type: none;
+  padding: 20px 0px 0px 0px;
 }
 
 .center-block {
