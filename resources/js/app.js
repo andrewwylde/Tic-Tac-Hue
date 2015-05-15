@@ -1,29 +1,15 @@
-
-var disabled = false;
-
 var TicTacJoe = TicTacJoe || {};
-
-var usersRef = new Firebase ('https://tic-tac-hue.firebaseio.com/users/');
-var dbRef = new Firebase ('https://tic-tac-hue.firebaseio.com/');
-var gameRef = new Firebase ('https://tic-tac-hue.firebaseio.com/game/');
-
-var gameAuth;
-
-
-var  setUser = function(player){
-  usersRef.set({player: otherPlayer(player),
-    waitingPlayer: gameAuth.uid});
-};
-
 
 var otherPlayer = function(player) {
   return player === 'X' ? 'O' : 'X';
 };
 
-
+//Function for creating a log entry.
 function getAlertDiv (player, turnNumber, xcoord, ycoord) {
-  var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + player + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
+
   var prefix;
+  //Here's just the contents of the div that we want to return
+  var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + player + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
 
   if (player === 'X') {
     //Green for Player 1
@@ -35,11 +21,7 @@ function getAlertDiv (player, turnNumber, xcoord, ycoord) {
   return prefix + ending;
 }
 
-function gameToDB (game){
-  gamesRef.push(game);
-}
-
-
+//Self-explanatory, really
 function makeLogEntry (player, turnNumber, xcoord, ycoord) {
   var alertContents;
   if (player) {
@@ -48,10 +30,11 @@ function makeLogEntry (player, turnNumber, xcoord, ycoord) {
     alertContents = '<div class="alert alert-warning log-alert">Neither Player Was Victorious</div>';
   }
 
+  //Make it so
   $('#log').prepend(alertContents);
-          //Dope animation
-          $('.alert').fadeIn('slow');
-        }
+        //Dope animation
+        $('.alert').fadeIn('slow');
+}
 
 
 //Declar a bunch of variables, starting with turn 1, player 1, and the domEl to be passed within a few functions here.
@@ -62,7 +45,10 @@ var turnNumber = 1, player, domEl = $('#gameboard'), logEl = $('#log'), xcoord, 
 
 $(document).ready(function() {
 
+
+
   $('#start').click(function () {
+    //Set some initial states and create a new game.
     turnNumber = 1;
     player = 'X';
     game = TicTacJoe.Game;
@@ -75,6 +61,7 @@ $(document).ready(function() {
     $(this).html('Play Again?');
     //Show the score board
     $('#score-board').removeClass('hidden');
+
   });
 
   $('#gameboard').on('click', '.square',function() {
@@ -96,10 +83,13 @@ $(document).ready(function() {
           if (game.testWinner(player)) {
             game.addVictory(player);
           }
-
+          //Increment turn number here so that the below gameWon will trigger at the end.
           turnNumber++;
+          //Switch Players
           player = otherPlayer(player);
+          //This is the 'Draw Condition' check
           if (turnNumber > 9 && !(gameWon)){
+            //When I pass addVictory without a player, the function takes the appropriate course
             game.addVictory();
             makeLogEntry(false,turnNumber,xcoord,ycoord);
           }
@@ -109,15 +99,12 @@ $(document).ready(function() {
 
 
         } else {
-
-          alert('Someone already played there...');
+          //Trigger a warning that the space has already been clicked
+          $('.modal-content p').html("Game Over: Resulted in Draw");
+          $('.bs-example-modal-sm').modal('show');
+          $('button:hidden').toggleClass('hidden');
         }
-
       }
-
-
-
-
     });
 });
 
