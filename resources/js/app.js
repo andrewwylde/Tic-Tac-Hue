@@ -98,19 +98,19 @@ $(document).ready(function() {
         //Verify that nothing exists on the game board at this time
         if (game.checkBoard(ycoord,xcoord) && !disabled) {
 
-          //Make a div that contains all the necessary information for the Log
+          //Pretty self-explanatory
           makeLogEntry(player, turnNumber, xcoord, ycoord);
 
-          //SEt the board to this person's stuff
+          //Set the board to this person's stuff
           game.setBoard(ycoord,xcoord,player, $(this));
+          gameWon = game.testWinner(player);
           if (game.testWinner(player)) {
             game.addVictory(player);
           }
 
           turnNumber++;
           player = otherPlayer(player);
-
-          if (turnNumber > 9 && !gameWon){
+          if (turnNumber > 9 && !(gameWon)){
             game.addVictory();
             makeLogEntry(false,turnNumber,xcoord,ycoord);
           }
@@ -119,17 +119,17 @@ $(document).ready(function() {
           $('button:hidden').toggleClass('hidden');
 
 
-          } else {
+        } else {
 
-            alert('Someone already played there...');
-          }
-
+          alert('Someone already played there...');
         }
 
+      }
 
 
 
-      });
+
+    });
 });
 
 
