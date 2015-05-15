@@ -7,6 +7,11 @@ TicTacJoe.Game = (function() {
 
   // Render the board by looping through and giving them
   // x and y coordinates
+
+  function _switchPlayers(player) {
+    return player === 'X' ? 'O' : 'X';
+  }
+
   function _renderBoard () {
     var xcounter = 0;
     var ycounter = 0;
@@ -124,7 +129,40 @@ TicTacJoe.Game = (function() {
     }
     $('.modal-content h2').html('GAME IS OVER');
     $('.bs-example-modal-sm').modal('show');
-    $('button:hidden').toggleClass('hidden');
+    $('#start').removeClass('hidden');
+    // $('button:hidden').toggleClass('hidden');
+  }
+
+  //Self-explanatory, really
+  function _makeLogEntry (player, turnNumber, xcoord, ycoord) {
+    var alertContents;
+    if (player) {
+      alertContents = _getAlertDiv(player, turnNumber, xcoord, ycoord);
+    } else {
+      alertContents = '<div class="alert alert-warning log-alert">Neither Player Was Victorious</div>';
+    }
+
+    //Make it so
+    $('#log').prepend(alertContents);
+          //Dope animation
+          $('.alert').fadeIn('slow');
+  }
+
+  //Function for creating a log entry.
+  function _getAlertDiv (player, turnNumber, xcoord, ycoord) {
+
+    var prefix;
+    //Here's just the contents of the div that we want to return
+    var ending = "<strong>Move " + turnNumber + "</strong>: " + "Player " + player + " selected square at position [" + xcoord + "," + ycoord + "]" + "</div>";
+
+    if (player === 'X') {
+      //Green for Player 1
+      prefix = '<div class="alert alert-success log-alert">';
+    } else if (player === 'O'){
+      //Red for Player 2
+      prefix = '<div class="alert alert-danger log-alert">';
+    }
+    return prefix + ending;
   }
 
 
@@ -133,7 +171,11 @@ return {
   init: _init,
   testWinner: _testWin,
   setBoard: _setBoard,
-  checkBoard: _checkBoard
+  checkBoard: _checkBoard,
+  switchPlayers: _switchPlayers,
+  makeLogEntry: _makeLogEntry,
+  getAlertDiv: _getAlertDiv,
+  addVictory: _victory
 };
 }) ();
 
