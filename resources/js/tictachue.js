@@ -2,7 +2,7 @@ var TicTacJoe = TicTacJoe || {};
 
 
 TicTacJoe.Game = (function() {
-  var _gameBoard = [[0,0,0],[0,0,0],[0,0,0]], $logDomElement, $boardDomElement, turnNumber;
+  var _gameBoard = [[null,null,null],[null,null,null],[null,null,null]], $logDomElement, $boardDomElement, turnNumber;
 
   function _renderBoard () {
     var xcounter = 0;
@@ -29,18 +29,40 @@ TicTacJoe.Game = (function() {
     _renderBoard();
   }
 
+
+  function _getDomEl (xcoord,ycoord) {
+    var tempString = '.square data-x ="' +xcoord + '" data-y ="'+ycoord+'"';
+    newDom = $(tempString);
+    return  tempString;
+  }
+
+
   function _setBoard (ycoord, xcoord, player, domEl) {
-    _gameBoard[ycoord][xcoord] = player;
-    _addOwner(domEl,player);
+    if(domEl){
+      _addOwner(domEl,player);
+    } else {
+      var newDomEl = _getDomEl(xcoord,ycoord);
+      _addOwner(newDomEl, player);
+    }
+
+   _gameBoard[ycoord][xcoord] = player;
+
+  }
+
+
+  function _getBoard () {
+    return _gameBoard;
   }
 
   function _addOwner (domEl,player) {
     // body...//If it's player one, add x, else give it o
-    if (player === 'X'){
-      $(domEl).addClass('x');
-    } else {
-      $(domEl).addClass('o');
-    }
+    if (domEl) {
+      if (player === 'X'){
+        $(domEl).addClass('x');
+      } else {
+        $(domEl).addClass('o');
+      }
+    } else {}
   }
 
   function _checkBoard (ycoord, xcoord) {
@@ -120,6 +142,7 @@ TicTacJoe.Game = (function() {
     testWinner: _testWin,
     setBoard: _setBoard,
     checkBoard: _checkBoard,
+    getBoard: _getBoard,
     addVictory: _victory
   };
 }) ();
