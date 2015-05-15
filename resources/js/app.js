@@ -1,14 +1,3 @@
-//CAll set twice
-// 1. When a player makes a move
-// 2. When the game is reset
-
-//Keep the state consistent
-
-//When you reset, just set it to something
-
-//Depending on how data is stored,
-//board state is the game.gameBoard
-
 
 var disabled = false;
 
