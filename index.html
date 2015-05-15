@@ -27,27 +27,47 @@
     </div>
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        <div id="spacer" class="center-block">Turn Number: </div>
-        <button class="btn btn-primary center-block" type="button" id="start">Start</button>
+
+          <button class="btn btn-primary center-block hidden" type="button" id="toggle-chat">Chat</button>
+          <button class="btn btn-primary center-block" type="button" id="start">Start</button>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-xs-3" id="log">
+      <div class="col-xs-3" id="log"></div>
+      <div class="col-xs-3 hidden" id="chat">
+
+        <div class="chat l-demo-container">
+          <header>Firebase Chat Demo</header>
+          <div class='chat-toolbar'>
+            <label for="nameInput">Username:</label>
+            <br>
+            <input type='text' id='nameInput' placeholder='enter a username...'>
+            <br>
+            <label for="textInput">Message:</label>
+            <br>
+            <input type='text' id='messageInput'  placeholder='Type a message...'>
+          </div>
+          <ul id='messages' class="chat-messages"></ul>
+
+        </div>
+
       </div>
       <div class="col-xs-6">
         <div id="gameboard" class="row"></div>
       </div>
       <div class="col-xs-3 hidden" id="score-board">
-        <h3 style="text-align: center;">Victory Points</h3>
-        <table>
+        <h3 style="text-align: left; border-bottom: 1px solid white">Victory Points</h3>
+        <table style="font-size: 14pt">
           <tbody>
             <tr>
-              <td>Player X: </td>
+              <td><strong>Player X: </strong></td>
+              <td></td>
               <td id="pX-score">0</td>
             </tr>
             <tr>
-              <td>Player O: </td>
+              <td><strong>Player O:</strong> </td>
+              <td></td>
               <td id="pO-score">0</td>
             </tr>
           </tbody>
@@ -66,7 +86,7 @@
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="resources/js/integrated-firebase.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/chat.js" type="text/javascript" charset="utf-8"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="resources/js/tictachue.js" type="text/javascript" charset="utf-8"></script>
   <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>

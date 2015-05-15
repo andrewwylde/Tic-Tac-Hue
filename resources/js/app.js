@@ -54,14 +54,20 @@ $(document).ready(function() {
     game = TicTacJoe.Game;
     game.init(domEl, logEl);
     gameWon = false;
-    setUser(player);
 
     //Hide this button and change its wording
     $(this).toggleClass('hidden');
-    $(this).html('Play Again?');
+    $(this).html('Restart?');
     //Show the score board
     $('#score-board').removeClass('hidden');
+    $('#toggle-chat').removeClass('hidden');
 
+  });
+
+  $('#toggle-chat').click(function(){
+    $('#log').toggleClass('hidden');
+    $('#chat').toggleClass('hidden');
+    $('#toggle-chat').html() === "Chat" ? $('#toggle-chat').html('Log'):$('#toggle-chat').html('Chat');
   });
 
   $('#gameboard').on('click', '.square',function() {
@@ -72,7 +78,7 @@ $(document).ready(function() {
         ycoord = $(this).data('y');
 
         //Verify that nothing exists on the game board at this time
-        if (game.checkBoard(ycoord,xcoord) && !disabled) {
+        if (game.checkBoard(ycoord,xcoord)) {
 
           //Pretty self-explanatory
           makeLogEntry(player, turnNumber, xcoord, ycoord);
@@ -82,6 +88,7 @@ $(document).ready(function() {
           gameWon = game.testWinner(player);
           if (game.testWinner(player)) {
             game.addVictory(player);
+            $('#start').removeClass('hidden');
           }
           //Increment turn number here so that the below gameWon will trigger at the end.
           turnNumber++;
@@ -95,7 +102,7 @@ $(document).ready(function() {
           }
 
           //Reset the hidden button to be visible!
-          $('button:hidden').toggleClass('hidden');
+          // $('button:hidden').toggleClass('hidden');
 
 
         } else {
