@@ -120,8 +120,9 @@ TicTacJoe.Game = (function() {
       _addPoint(player);
       $('.modal-content p').html("Player " + player + " has emerged victorious, gaining them 1 victory point");
     } else {
-      $('.modal-content p').html("Game Over: Resulted in Draw");
+      $('.modal-content p').html("Resulted in a Draw");
     }
+    $('.modal-content h2').html('GAME IS OVER');
     $('.bs-example-modal-sm').modal('show');
     $('button:hidden').toggleClass('hidden');
   }

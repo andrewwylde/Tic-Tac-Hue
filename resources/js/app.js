@@ -70,6 +70,12 @@ $(document).ready(function() {
     $('#toggle-chat').html() === "Chat" ? $('#toggle-chat').html('Log'):$('#toggle-chat').html('Chat');
   });
 
+  $('#clearMessage').click(function(){
+    console.log('this happened');
+    messagesRef.set({});
+    $('#messages').html('');
+  });
+
   $('#gameboard').on('click', '.square',function() {
 
     if(!gameWon){
@@ -107,7 +113,8 @@ $(document).ready(function() {
 
         } else {
           //Trigger a warning that the space has already been clicked
-          $('.modal-content p').html("Game Over: Resulted in Draw");
+          $('.modal-content p').html("THOU SHALT NOT CLICK WHERE A HUE HATH BEEN PLACED ALREADY!!");
+          $('.modal-content h2').html('HOW DARE THEE?');
           $('.bs-example-modal-sm').modal('show');
           $('button:hidden').toggleClass('hidden');
         }
