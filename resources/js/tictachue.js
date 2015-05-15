@@ -131,12 +131,9 @@ TicTacJoe.Game = (function() {
 //Return all of our internal function
 return {
   init: _init,
-  renderBoard: _renderBoard,
-  gameBoard: _gameBoard,
   testWinner: _testWin,
   setBoard: _setBoard,
-  checkBoard: _checkBoard,
-  addVictory: _victory
+  checkBoard: _checkBoard
 };
 }) ();
 

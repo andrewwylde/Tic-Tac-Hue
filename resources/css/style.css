@@ -143,7 +143,7 @@ td {
 
 @media (max-width: 992px){
   .square {
-    height: 108.828125px;
+    height: 110px;
   }
 
   .log-alert {
@@ -152,6 +152,12 @@ td {
 
   h1 {
     font-size: 72px !important;
+  }
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
   }
 
   #log {
@@ -163,10 +169,35 @@ td {
 
 @media (max-width: 768px){
   .square {
-    height: 94.15625px;
+    height: 105px;
   }
   h1 {
     font-size: 36px !important;
+  }
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
+  }
+  #log {
+    padding: 0px !important;
+  }
+}
+
+@media (max-width: 500px){
+  .square {
+    height: 60px;
+    width: 60px !important;
+  }
+  h1 {
+    font-size: 36px !important;
+  }
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
   }
   #log {
     padding: 0px !important;

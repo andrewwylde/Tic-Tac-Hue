@@ -27,4 +27,5 @@ The user stories that drove this project were as follows:
 Other objectives that were completed:
 
 - Multiple game rounds with a win counter
+- Chat box for players to communicate
 
