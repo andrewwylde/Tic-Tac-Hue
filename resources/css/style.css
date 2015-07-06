@@ -3,18 +3,13 @@ body {
   color: white !important;
 }
 
-.hidden {
-  display: none;
+input {
+  color: black !important;
 }
 
-.alert {
-  display: none;
+td {
+  padding-right: 20px !important;
 }
-
-.row {
-  margin: 0 !important;
-}
-
 #p1-score{
   padding-left: 10px;
 }
@@ -23,26 +18,12 @@ body {
   padding-left: 10px;
 }
 
-#spacer {
-  display: none;
-  text-align: center;
-  width: 200px;
-  height: 50px;
-  margin: 10px auto;
-  font-size: 1.5em;
-}
-
 #start {
   width: 150px;
   height: 50px;
   text-align: center;
   font-size: 14pt;
   margin: 10px auto;
-}
-
-.center-block {
-  text-align: center;
-  margin: 0 auto;
 }
 
 #title-main {
@@ -65,6 +46,45 @@ body {
 #score-board {
   margin-top: -20px;
   padding-top: -20px;
+}
+
+#toggle-chat {
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 14pt;
+  margin: 10px auto;
+}
+
+#chat {
+
+}
+
+.chat-username {
+  color: #2ecc71;
+}
+
+#messages {
+  color: red;
+  list-style-type: none;
+  padding: 20px 0px 0px 0px;
+}
+
+.center-block {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.alert {
+  display: none;
+}
+
+.row {
+  margin: 0 !important;
 }
 
 .square {
@@ -111,6 +131,9 @@ body {
 }
 
 
+/*Media Queries Below*/
+
+
 @media (max-width: 1200px){
   .square {
     height: 146.65625px;
@@ -120,7 +143,7 @@ body {
 
 @media (max-width: 992px){
   .square {
-    height: 108.828125px;
+    height: 110px;
   }
 
   .log-alert {
@@ -129,6 +152,12 @@ body {
 
   h1 {
     font-size: 72px !important;
+  }
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
   }
 
   #log {
@@ -140,12 +169,37 @@ body {
 
 @media (max-width: 768px){
   .square {
-    height: 94.15625px;
+    height: 105px;
   }
   h1 {
     font-size: 36px !important;
   }
-   #log {
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
+  }
+  #log {
+    padding: 0px !important;
+  }
+}
+
+@media (max-width: 500px){
+  .square {
+    height: 60px;
+    width: 60px !important;
+  }
+  h1 {
+    font-size: 36px !important;
+  }
+  h3 {
+    font-size: 12pt!important;
+  }
+  td {
+    font-size: 8pt!important;
+  }
+  #log {
     padding: 0px !important;
   }
 }

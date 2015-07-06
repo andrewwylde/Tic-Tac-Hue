@@ -19,7 +19,6 @@
   <!-- Create overarching container -->
   <!-- nothing crazy in my html -->
   <div class="container">
-
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
         <h1 id="title-main" class="center-block">Tic Tac Hue</h1>
@@ -27,34 +26,49 @@
     </div>
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        <div id="spacer" class="center-block">Turn Number: </div>
+        <button class="btn btn-primary center-block hidden" type="button" id="toggle-chat">Chat</button>
         <button class="btn btn-primary center-block" type="button" id="start">Start</button>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-xs-3" id="log">
+      <div class="col-xs-3" id="log"></div>
+      <div class="col-xs-3 hidden" id="chat">
+        <div class="chat l-demo-container">
+          <button class="btn btn-primary" type="button" id="clearMessage">Clear</button>
+          <div class='chat-toolbar'>
+            <label for="nameInput">Username:</label>
+            <br>
+            <input type='text' id='nameInput' class="input-group" placeholder='enter a username...'>
+            <br>
+            <label for="textInput">Message:</label>
+            <br>
+            <input type='text' id='messageInput' class="input-group" placeholder='Type a message...'>
+            <ul id='messages' class="chat-messages"></ul>
+          </div>
+          <br>
+        </div>
       </div>
       <div class="col-xs-6">
         <div id="gameboard" class="row"></div>
       </div>
       <div class="col-xs-3 hidden" id="score-board">
-        <h3 style="text-align: center;">Victory Points</h3>
-        <table>
+        <h3 style="text-align: left; border-bottom: 1px solid white">Victory Points</h3>
+        <table style="font-size: 14pt">
           <tbody>
             <tr>
-              <td>Player X: </td>
+              <td><strong>Player X: </strong></td>
+              <td></td>
               <td id="pX-score">0</td>
             </tr>
             <tr>
-              <td>Player O: </td>
+              <td><strong>Player O:</strong> </td>
+              <td></td>
               <td id="pO-score">0</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -64,9 +78,8 @@
       </div>
     </div>
   </div>
-
-  <script src="bower_components/jquery/dist/jquery.js"></script><!--
-  <script src="resources/js/integrated-firebase.js" type="text/javascript" charset="utf-8"></script> -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="resources/js/chat.js" type="text/javascript" charset="utf-8"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="resources/js/tictachue.js" type="text/javascript" charset="utf-8"></script>
   <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
