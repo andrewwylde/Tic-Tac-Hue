@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--Add firebase -->
+  <script src='https://cdn.firebase.com/js/client/2.2.4/firebase.js'></script>
+  <!--Set viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--Add local stylesheet -->
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+  <!--Add bootstrap -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- gotta have a dope font -->
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  <title>Tic Tac Hue</title>
+</head>
+
+<body>
+  <!-- Create overarching container -->
+  <!-- nothing crazy in my html -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <h1 id="title-main" class="center-block">Tic Tac Hue</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <form>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username">
+          <button class="btn btn-danger" id="login">Login</button>
+          <button class="btn btn-primary" id="logout">Logout</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="resources/js/chat.js" type="text/javascript" charset="utf-8"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="resources/js/tictachue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/integrated-firebase.js"></script>
+</body>
+
+</html>

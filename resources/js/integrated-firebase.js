@@ -1,31 +1,12 @@
-// $(document).ready(function() {
 
-// //Get a "unique" id for the user
-// if (!(gameAuth = gameRef.getAuth())) {
-//   gameRef.authAnonymously(function(error, authData) {
-//     if (error) {
-//       console.log("Login Failed!", error);
-//     } else {
-//       gameAuth = authData;
-//     }
-//   });
-// }
-
-// gameRef.on('value', function(snapshot) {
-//     var message = snapshot.val();
-//     var disable = false;
-//     if (message) {
-//       if (gameAuth.uid === message.waitingPlayer) {
-//         player = otherPlayer(message.player);
-//         disable = true;
-//       } else {
-//         player = message.player;
-//       }
-//     }
+// var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
+//   if (error) {
+//     // an error occurred while attempting login
+//     console.log(error);
+//   } else if (user) {
+//     // user authenticated with Firebase
+//     console.log("User ID: " + user.uid + ", Provider: " + user.provider);
+//   } else {
+//     // user is logged out
+//   }
 // });
-
-
-// });
-
-
-

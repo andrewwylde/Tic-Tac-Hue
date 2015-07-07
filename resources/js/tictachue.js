@@ -2,6 +2,18 @@ var TicTacJoe = TicTacJoe || {};
 
 // Create an IIFE/Constructor function
 TicTacJoe.Game = (function() {
+  var main = {
+    mainRef: function() {
+      return new Firebase('https://tic-tac-hue.firebaseio.com/')
+    },
+    messagesRef: function() {
+      return new Firebase('https://tic-tac-hue.firebaseio.com/chats/')
+    },
+    gameRef: function() {
+      return new Firebase('https://tic-tac-hue.firebaseio.com/games/')
+    }
+  };
+
   // Set the gameBoard to a temporary state and set some variables
   var _gameBoard = [
       [0, 0, 0],
@@ -183,6 +195,7 @@ TicTacJoe.Game = (function() {
     switchPlayers: _switchPlayers,
     makeLogEntry: _makeLogEntry,
     getAlertDiv: _getAlertDiv,
-    addVictory: _victory
+    addVictory: _victory,
+    main: main
   };
 })();

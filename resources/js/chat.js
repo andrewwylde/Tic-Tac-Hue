@@ -1,5 +1,5 @@
   // CREATE A REFERENCE TO FIREBASE
-  var messagesRef = new Firebase('https://tic-tac-hue.firebaseio-demo.com/chat/');
+  var messagesRef = new Firebase('https://tic-tac-hue.firebaseio.com/chat/');
 
   // REGISTER DOM ELEMENTS
   var messageField = $('#messageInput');
