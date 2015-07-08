@@ -1,5 +1,6 @@
 var TicTacJoe = TicTacJoe || {};
 //Declar a bunch of variables, starting with turn 1, player X, and the domEl to be passed within a few functions here.
+var currentUser = {};
 
 
 
@@ -11,7 +12,6 @@ var turnNumber = 1,
 //Initiate Doc Readiness
 
 $(document).ready(function() {
-  var currentUser = {};
 
   var isNewUser = true;
   var myRef = new Firebase("https://tic-tac-hue.firebaseio.com");
@@ -19,19 +19,65 @@ $(document).ready(function() {
     if (error !== null) {
       console.log("Login error:", error);
     } else if (user !== null) {
-      console.log("User authenticated with Firebase:", user);
+      if (isNewUser) {
+        myRef.child('users').child(user.uid).set(user);
+        currentUser = user;
+        console.log(currentUser);
+        isNewUser = false;
+      }
+      currentUser = user;
+
+
     } else {
       console.log("User is logged out");
     }
   });
+
+  function authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    } else {
+      console.log("User is logged out");
+    }
+  }
+
+  myRef.onAuth(authDataCallback);
+
+
+
+
+
+
+
   // ================================
   // LOGIN
   // ================================
   $('#login').on('click', function(e) {
     e.preventDefault();
-    authClient.login('anonymous', {
-      username: $('input#username').val()
+    $(this).hide();
+
+  });
+
+  $('#create-game').on('click', function(e) {
+    e.preventDefault();
+    console.log('creating new game');
+    myRef.child('users').child(currentUser.uid).child('games').set({
+      playerOneId: currentUser.id,
+      playerTwoId: '',
+      gameWon: false,
+    }, function(err) {
+      if (err) {
+        console.error(err);
+      }
     });
+
+    myRef.on('value', function(snapshot) {
+      console.log(snapshot.val());
+    }, function(errorObject) {
+      console.log('The read failed: ' + errorObject.code);
+      console.log(errorObject);
+    });
+
   });
 
   $('#logout').on('click', function(e) {
